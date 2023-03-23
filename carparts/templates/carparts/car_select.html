@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html>
+<body style="text-align: center; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; margin:0;">
+
+  <div class="navbar" style="width:100vw;margin-bottom: 40px;">
+    <img src="https://cld.partsimg.com/image/upload/v1605623427/carparts/logos/wordmark/full_color/CP_WORDMARK_COLOUR_RGB_HR.png" width="20%" style="display: block; margin: auto;">
+  </div>
+<br>
+<h1 style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; color: #252958;">SELECT CAR DETAILS</h1>
+<form style="text-align: center;background-color: #252958;color: white; padding-top:50px;padding-bottom: 50px; " action='{% url "carparts:product" company %}' method="post">
+   {% csrf_token %}
+  <label  for="carname" style="margin-top:30px;">Choose car name:</label><br>
+  <select name="carname" id="carname" style="padding: 10px 10px 10px 10px; border-radius: 30px; margin-top: 10px; text-align: center;">
+    {% for i in company_data %}
+    <option name='opt_carname' value="{{ i.name }}">{{ i.name }}</option>
+    {% endfor %}
+  </select>
+  <br><br>
+  <div style="margin-top: 15px;">
+  <label  for="variant">Choose variant:</label><br>
+  <select name="variant" id="variant" style="padding: 10px 30px 10px 30px; border-radius: 30px; margin-top: 10px; text-align: center;">
+    {% for i in company_data %}
+    <option name='opt_variant' value="{{ i.variant }}">{{ i.variant }}</option>
+    {% endfor %}
+  </select>
+  <br><br>
+</div>
+<div style="margin-top: 10px;">
+    <label  for="model_no">Choose model:</label><br>
+  <select name="model_no" id="model_no" style="padding: 10px 30px 10px 30px; border-radius: 30px; margin-top: 10px; text-align: center;">
+    {% for i in company_data %}
+    <option name='opt_modelno' value="{{ i.model_no }}">{{ i.model_no }}</option>
+    {% endfor %}
+  </select>
+  <br><br>
+</div>
+  <input type="submit" value="Submit" style="border-radius: 30px;padding: 10px 30px 10px 30px; color: #252958; background-color: white; border: none;">
+      {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+</form>
+
+
+
+</body>
+</html>
